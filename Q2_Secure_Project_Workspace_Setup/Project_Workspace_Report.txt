@@ -1,0 +1,123 @@
+Secure Project Workspace Setup Report
+
+1. Directory Structure Created
+
+Command used:
+mkdir -p secure_project/docs secure_project/data secure_project/scripts
+
+Command used:
+ls -ld secure_project secure_project/*
+
+Output observed:
+drwxrwxrwx+ 5 codespace codespace 4096 Jul  2 13:05 secure_project
+drwxrwxrwx+ 2 codespace codespace 4096 Jul  2 13:05 secure_project/data
+drwxrwxrwx+ 2 codespace codespace 4096 Jul  2 13:05 secure_project/docs
+drwxrwxrwx+ 2 codespace codespace 4096 Jul  2 13:05 secure_project/scripts
+
+Observation:
+The mkdir command created the main secure_project directory and three subdirectories: data, docs, and scripts. The ls -ld command showed the default permissions and ownership of these directories.
+
+2. Permissions Before Modification
+
+Command used:
+touch secure_project/docs/plan.txt
+touch secure_project/data/user_info.txt
+touch secure_project/scripts/run.sh
+
+Observation:
+The touch commands created empty files inside the project directories. These files were used to test and modify permissions.
+
+Command used:
+ls -lR secure_project
+
+Output observed:
+secure_project:
+total 12
+drwxrwxrwx+ 2 codespace codespace 4096 Jul  2 13:07 data
+drwxrwxrwx+ 2 codespace codespace 4096 Jul  2 13:07 docs
+drwxrwxrwx+ 2 codespace codespace 4096 Jul  2 13:07 scripts
+
+secure_project/data:
+total 0
+-rw-rw-rw- 1 codespace codespace 0 Jul  2 13:07 user_info.txt
+
+secure_project/docs:
+total 0
+-rw-rw-rw- 1 codespace codespace 0 Jul  2 13:07 plan.txt
+
+secure_project/scripts:
+total 0
+-rw-rw-rw- 1 codespace codespace 0 Jul  2 13:07 run.sh
+
+Observation:
+The ls -lR command displayed the directory tree recursively with permissions and ownership. Before modification, the files and directories had broad permissions in the Codespaces workspace.
+
+3. Umask Value
+
+Command used:
+umask
+
+Output observed:
+0022
+
+Observation:
+The umask value was 0022. This value controls the default permissions assigned to newly created files and directories.
+
+4. Permissions After Modification
+
+Command used:
+chmod 700 secure_project
+chmod 750 secure_project/docs
+chmod 750 secure_project/data
+chmod 700 secure_project/scripts
+chmod 644 secure_project/docs/plan.txt
+chmod 600 secure_project/data/user_info.txt
+chmod 700 secure_project/scripts/run.sh
+
+Observation:
+The chmod commands changed permissions to make the workspace more secure. Sensitive files were given stricter permissions, while the script file was given execute permission only for the owner.
+
+Command used:
+ls -lR secure_project
+
+Output observed:
+secure_project:
+total 12
+drwxr-x---+ 2 codespace codespace 4096 Jul  2 13:07 data
+drwxr-x---+ 2 codespace codespace 4096 Jul  2 13:07 docs
+drwx------+ 2 codespace codespace 4096 Jul  2 13:07 scripts
+
+secure_project/data:
+total 0
+-rw------- 1 codespace codespace 0 Jul  2 13:07 user_info.txt
+
+secure_project/docs:
+total 0
+-rw-r--r-- 1 codespace codespace 0 Jul  2 13:07 plan.txt
+
+secure_project/scripts:
+total 0
+-rwx------ 1 codespace codespace 0 Jul  2 13:07 run.sh
+
+Observation:
+After modification, user_info.txt had permission 600, meaning only the owner can read and write it. The run.sh file had permission 700, meaning only the owner can read, write, and execute it.
+
+5. Ownership Details
+
+Command used:
+ls -ld secure_project secure_project/*
+
+Output observed:
+drwx------+ 5 codespace codespace 4096 Jul  2 13:05 secure_project
+drwxr-x---+ 2 codespace codespace 4096 Jul  2 13:07 secure_project/data
+drwxr-x---+ 2 codespace codespace 4096 Jul  2 13:07 secure_project/docs
+drwx------+ 2 codespace codespace 4096 Jul  2 13:07 secure_project/scripts
+
+Observation:
+The ownership details show that the owner and group are both codespace. This means the codespace user owns and controls the project workspace.
+
+6. Explanation of How Permissions Protect Project Data
+
+Linux permissions protect project data by controlling read, write, and execute access for the owner, group, and others. In this setup, sensitive files such as user_info.txt were restricted so only the owner can read and write them.
+
+The docs and data directories were set to 750, allowing the owner full access and the group limited access, while others have no access. The scripts directory and run.sh file were restricted to the owner only, which helps prevent unauthorized execution or modification.

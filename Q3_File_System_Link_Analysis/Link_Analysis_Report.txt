@@ -1,0 +1,88 @@
+File System and Link Analysis Report
+
+1. File Created
+
+Command used:
+echo "This is the original file" > original.txt
+
+Observation:
+The echo command created a file named original.txt and added sample text into it. The cat command confirmed that the file was created successfully.
+
+2. Hard Link Created
+
+Command used:
+ln original.txt hardlink.txt
+
+Observation:
+The ln command created a hard link named hardlink.txt. The hard link shared the same inode number as original.txt.
+
+3. Symbolic Link Created
+
+Command used:
+ln -s original.txt symlink.txt
+
+Observation:
+The ln -s command created a symbolic link named symlink.txt. The symbolic link pointed to the path original.txt.
+
+4. Inode Numbers
+
+Command used:
+ls -li
+
+Output observed:
+total 8
+1310829 -rw-rw-rw- 2 codespace codespace 26 Jul  2 13:31 hardlink.txt
+1310829 -rw-rw-rw- 2 codespace codespace 26 Jul  2 13:31 original.txt
+1310830 lrwxrwxrwx 1 codespace codespace 12 Jul  2 13:32 symlink.txt -> original.txt
+
+Observation:
+The original file and hard link had the same inode number, which shows that they point to the same file data. The symbolic link had a different inode number because it is a separate file that points to a path.
+
+5. Metadata Collected
+
+Command used:
+stat original.txt
+stat hardlink.txt
+stat symlink.txt
+
+Observation:
+The stat command displayed file metadata such as inode number, permissions, size, link count, access time, modify time, and change time. The metadata confirmed that the hard link shared the original file inode, while the symbolic link had separate metadata.
+
+6. Content Before Deleting Original File
+
+Command used:
+cat original.txt
+cat hardlink.txt
+cat symlink.txt
+
+Observation:
+Before deletion, all three names displayed the same file content. This showed that both hard links and symbolic links can access the original file data while the original file path exists.
+
+7. Effect of Deleting Original File
+
+Command used:
+rm original.txt
+
+Observation:
+The original filename was deleted using the rm command. This allowed testing of hard link and symbolic link behavior after the original file path was removed.
+
+8. Behavior After Deletion
+
+Command used:
+cat hardlink.txt
+cat symlink.txt
+
+Observation:
+The hard link still displayed the file content after deleting original.txt because it points directly to the same inode. The symbolic link failed because it pointed to the deleted original.txt path.
+
+9. Comparison Between Hard Link and Symbolic Link
+
+Hard Link:
+A hard link shares the same inode as the original file. It continues to work even if the original filename is deleted.
+
+Symbolic Link:
+A symbolic link has a separate inode and points to the file path. It breaks if the target file path is deleted.
+
+10. Conclusion
+
+This experiment showed that Linux hard links and symbolic links work differently. A hard link is connected directly to the inode and file data, while a symbolic link is connected to a pathname. Therefore, deleting the original filename does not affect the hard link, but it breaks the symbolic link.

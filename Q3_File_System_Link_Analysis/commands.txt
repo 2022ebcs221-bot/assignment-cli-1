@@ -1,0 +1,27 @@
+mkdir link_lab
+cd link_lab
+
+echo "This is the original file" > original.txt
+cat original.txt
+
+ln original.txt hardlink.txt
+
+ln -s original.txt symlink.txt
+
+ls -li
+
+stat original.txt
+stat hardlink.txt
+stat symlink.txt
+
+cat original.txt
+cat hardlink.txt
+cat symlink.txt
+
+rm original.txt
+
+ls -li
+
+cat hardlink.txt
+
+cat symlink.txt

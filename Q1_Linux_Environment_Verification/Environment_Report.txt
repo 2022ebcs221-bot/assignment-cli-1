@@ -1,0 +1,39 @@
+Linux Environment Verification Report
+
+1. Username:
+Command used: whoami
+Output observed: codespace
+Observation: The whoami command displayed the currently logged-in Linux username. This confirms which user account is being used in the Codespaces environment.
+
+2. Groups:
+Command used: 
+Output observed: codespace pipx python oryx golang docker sdkman rvm php conda nvs nvm hugo ssh
+Observation: The groups command displayed the groups associated with my user account. These groups decide what permissions and access rights the user may have.
+
+3. Current Shell:
+Command used: echo $SHELL
+Output observed: /bin/bash
+Observation: The echo $SHELL command displayed the default shell used by the current user. The shell is responsible for interpreting and executing Linux commands.
+
+4. Current Working Directory:
+Command used: pwd
+Output observed: /workspaces/assignment-cli-1/Q1_Linux_Environment_Verification
+Observation: The pwd command displayed the current working directory. This helps verify the location where commands are being executed.
+
+5. Workspace Files:
+Command used: ls -la
+Output observed: total 12
+drwxrwxrwx+ 3 codespace codespace 4096 Jul  2 12:46 .
+drwxrwxrwx+ 8 codespace root      4096 Jul  2 12:45 ..
+-rw-rw-rw-  1 codespace codespace    0 Jul  2 12:46 Environment_Report.txt
+-rw-rw-rw-  1 codespace codespace    0 Jul  2 12:46 commands.txt
+drwxrwxrwx+ 2 codespace codespace 4096 Jul  2 12:45 screenshots
+Observation: The ls -la command listed all files and directories, including hidden files. It also showed permissions, ownership, size, and modification details.
+
+6. Network Connectivity:
+Command used: ping -c 4 google.com
+Output observed: PING google.com (192.178.193.101) 56(84) bytes of data.
+
+--- google.com ping statistics ---
+4 packets transmitted, 0 received, 100% packet loss, time 3054ms
+Observation: The ping command tested network connectivity by sending packets to google.com. Successful replies indicate that the Linux environment has internet access.

@@ -1,0 +1,6 @@
+1. whoami
+2. groups
+3. echo $SHELL
+4. pwd
+5. ls -la
+6. ping -c 4 google.com

@@ -1,0 +1,23 @@
+mkdir -p secure_project/docs secure_project/data secure_project/scripts
+
+ls -ld secure_project secure_project/*
+
+touch secure_project/docs/plan.txt
+touch secure_project/data/user_info.txt
+touch secure_project/scripts/run.sh
+
+ls -lR secure_project
+
+umask
+
+chmod 700 secure_project
+chmod 750 secure_project/docs
+chmod 750 secure_project/data
+chmod 700 secure_project/scripts
+chmod 644 secure_project/docs/plan.txt
+chmod 600 secure_project/data/user_info.txt
+chmod 700 secure_project/scripts/run.sh
+
+ls -lR secure_project
+
+ls -ld secure_project secure_project/*

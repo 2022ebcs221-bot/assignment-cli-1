@@ -1,0 +1,14 @@
+lsblk
+
+df -h
+
+df -i
+
+mount | head
+
+du -sh ~
+
+vi Storage_Assessment_Report.txt
+
+ls -l Storage_Assessment_Report.txt
+cat Storage_Assessment_Report.txt

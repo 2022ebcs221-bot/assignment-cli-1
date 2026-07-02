@@ -1,0 +1,29 @@
+which lsof
+
+sudo apt update
+sudo apt install -y lsof
+
+mkdir io_lab
+cd io_lab
+
+echo "Application log started" > app.log
+cat app.log
+
+ls -l app.log
+
+exec 3> custom_fd.log
+echo "Writing using file descriptor 3" >&3
+cat custom_fd.log
+exec 3>&-
+
+ls /not_existing_directory > output.txt 2> error.txt
+
+cat output.txt
+cat error.txt
+
+ulimit -a
+
+lsof | head
+
+ls -l /proc/$$/fd
+
